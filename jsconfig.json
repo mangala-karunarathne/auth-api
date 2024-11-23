@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Or the version of JavaScript you're using
+    "module": "ESNext",
+    "baseUrl": "./", // Ensures relative paths work for imports
+    "paths": {
+      "*": ["src/*"] // Adjust "src" based on your folder structure
+    }
+  },
+  "include": ["src/**/*"] // Adjust "src" to your project's folder
+}
