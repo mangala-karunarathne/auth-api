@@ -22,3 +22,13 @@ app.listen(5000, () => console.log("Server listening on port 5000!"));
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    message,
+    statusCode,
+  });
+});
