@@ -20,10 +20,9 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log("Req.body", req.body);
+
   try {
-    console.log("A");
-    const ValidUser = await User.find({ email });
+    const ValidUser = await User.findOne({ email });
 
     if (!ValidUser) return next(errorHandler(404, "User Not Found"));
 
@@ -34,7 +33,7 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: ValidUser._id }, process.env.JWT_SECRET);
 
     res
-      .cockies("access_taken", token, { httpOnly: true })
+      .cookie("access_taken", token, { httpOnly: true })
       .status(200)
       .json(ValidUser);
   } catch (error) {
