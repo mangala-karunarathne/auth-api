@@ -34,7 +34,7 @@ export const signin = async (req, res, next) => {
     const { password: hashPassword, ...rest } = ValidUser._doc;
     const expiryDate = new Date(Date.now() + 3600000); //1 hour
     res
-      .cookie("access_taken", token, { httpOnly: true })
+      .cookie("access_taken", token, { httpOnly: true, expires: expiryDate })
       .status(200)
       .json(rest);
   } catch (error) {
